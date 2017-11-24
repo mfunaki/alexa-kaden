@@ -18,7 +18,15 @@
       },
       {
         "name": "ListChannel",
-        "values": []
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "ƒ`ƒƒƒ“ƒlƒ‹",
+              "synonyms": []
+            }
+          }
+        ]
       },
       {
         "name": "ListNext",

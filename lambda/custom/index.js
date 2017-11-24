@@ -95,7 +95,7 @@ const handlers = {
     'ChangeTVChannelPrevIntent': function () {
         console.log("ChangeTVChannelPrevIntent: " + this.event.request.dialogState);
 
-        var channel = this.attributes[kTVChannel]--;
+        var channel = this.attributes[kTVChannel] - 1;
         var message;
         if (channel < 1) {
             channel = 12;
@@ -109,7 +109,7 @@ const handlers = {
     'ChangeTVChannelNextIntent': function () {
         console.log("ChangeTVChannelNextIntent: " + this.event.request.dialogState);
 
-        var channel = this.attributes[kTVChannel]++;
+        var channel = this.attributes[kTVChannel] + 1;
         var message;
         if (channel > 12) {
             channel = 1;
@@ -120,13 +120,13 @@ const handlers = {
         this.response.speak(message);
         this.emit(':responseReady');
     },
-    'ChangeACTempUpIntent': function () {
+    'TurnACTempUpIntent': function () {
         console.log("ChangeACTempUpIntent: " + this.event.request.dialogState);
 
-        var temp = this.attributes[kACTemp]--;
+        var temp = this.attributes[kACTemp] + 1;
         var message;
-        if (temp < 16) {
-            temp = 16;
+        if (temp > 30) {
+            temp = 30;
         }
         this.attributes[kACTemp] = temp;
         message = 'エアコンの設定温度は ' + temp + ' です。';
@@ -134,13 +134,13 @@ const handlers = {
         this.response.speak(message);
         this.emit(':responseReady');
     },
-    'ChangeACTempDownIntent': function () {
+    'TurnACTempDownIntent': function () {
         console.log("ChangeACTempDownIntent: " + this.event.request.dialogState);
 
-        var temp = this.attributes[kACTemp]++;
+        var temp = this.attributes[kACTemp] - 1;
         var message;
-        if (temp > 30) {
-            temp = 30;
+        if (temp < 16) {
+            temp = 16;
         }
         this.attributes[kACTemp] = temp;
         message = 'エアコンの設定温度は ' + temp + ' です。';
