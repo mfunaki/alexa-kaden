@@ -1,0 +1,145 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "ListPowerState",
+        "values": [
+          {
+            "id": "STATE_ON",
+            "name": {
+              "value": "オン",
+              "synonyms": [
+                "つける",
+                "オンにする",
+                "オンにして",
+                "つけて"
+              ]
+            }
+          },
+          {
+            "id": "STATE_OFF",
+            "name": {
+              "value": "オフ",
+              "synonyms": [
+                "消す",
+                "オフにする",
+                "オフにして",
+                "消して"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListTarget",
+        "values": [
+          {
+            "id": "DEVICE_TV",
+            "name": {
+              "value": "テレビ",
+              "synonyms": []
+            }
+          },
+          {
+            "id": "DEVICE_AIRCON",
+            "name": {
+              "value": "エアコン",
+              "synonyms": [
+                "空調"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "ChangeDevicePowerIntent",
+        "samples": [
+          "{target} の電源を {powerState}",
+          "{target} を {powerState}"
+        ],
+        "slots": [
+          {
+            "name": "target",
+            "type": "ListTarget",
+            "samples": [
+              "{target}です",
+              "{target}"
+            ]
+          },
+          {
+            "name": "powerState",
+            "type": "ListPowerState",
+            "samples": [
+              "{powerState}です",
+              "{powerState}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "家電"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-target",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "テレビですか？　エアコンですか？"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-powerState",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "オンですか？　オフですか？"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "ChangeDevicePowerIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "target",
+            "type": "ListTarget",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-target"
+            }
+          },
+          {
+            "name": "powerState",
+            "type": "ListPowerState",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-powerState"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
