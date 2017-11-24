@@ -8,4 +8,6 @@ As both TV and AC have Power, so if you simply say 'turn on(スイッチつけて)', th
 On the other hand, only TV has Channel, so if you say 'next channel(次のチャンネル)', TV is not explicitly mentioned, however, Alexa is not expected to ask the target device.
 
 Though Alexa has a dialoguing feature (https://developer.amazon.com/ja/docs/custom-skills/dialog-interface-reference.html ), Alexa Service Simulator doesn't support the feature,
-so the feature was not intentionally used here.
+so the feature was intentionally not used here.
+
+See evaluation points here (https://codezine.jp/article/detail/1410?p=2 ) 
