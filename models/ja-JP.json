@@ -2,30 +2,90 @@
   "languageModel": {
     "types": [
       {
-        "name": "ListPowerState",
+        "name": "ListAC",
         "values": [
           {
-            "id": "STATE_ON",
+            "id": null,
             "name": {
-              "value": "オン",
+              "value": "エアコン",
               "synonyms": [
-                "つける",
-                "オンにする",
-                "オンにして",
-                "つけて"
+                "空調",
+                "部屋"
               ]
             }
-          },
+          }
+        ]
+      },
+      {
+        "name": "ListChannel",
+        "values": []
+      },
+      {
+        "name": "ListNext",
+        "values": [
           {
-            "id": "STATE_OFF",
+            "id": null,
+            "name": {
+              "value": "次",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListOff",
+        "values": [
+          {
+            "id": null,
             "name": {
               "value": "オフ",
               "synonyms": [
                 "消す",
-                "オフにする",
-                "オフにして",
-                "消して"
+                "消して",
+                "オフにして"
               ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListOn",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "オン",
+              "synonyms": [
+                "つける",
+                "つけて",
+                "オンにして"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListPower",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "電源",
+              "synonyms": [
+                "スイッチ"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListPrev",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "前",
+              "synonyms": []
             }
           }
         ]
@@ -50,6 +110,66 @@
             }
           }
         ]
+      },
+      {
+        "name": "ListTemp",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "温度",
+              "synonyms": [
+                "室温"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListTempDown",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "下げる",
+              "synonyms": [
+                "下げて",
+                "涼しくして",
+                "涼しく"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListTempUp",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "上げる",
+              "synonyms": [
+                "上げて",
+                "暑くして",
+                "暑く"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ListTV",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "TV",
+              "synonyms": [
+                "テレビ"
+              ]
+            }
+          }
+        ]
       }
     ],
     "intents": [
@@ -66,80 +186,192 @@
         "samples": []
       },
       {
-        "name": "ChangeDevicePowerIntent",
+        "name": "ChangeTVChannelNextIntent",
         "samples": [
-          "{target} の電源を {powerState}",
-          "{target} を {powerState}"
+          " {TV} の {Channel} を {Next} にして",
+          " {TV} の {Channel} を {Next} に",
+          " {Channel} を {Next} にして",
+          " {Channel} を {Next} に",
+          " {Next} の {Channel}"
         ],
         "slots": [
           {
-            "name": "target",
-            "type": "ListTarget",
-            "samples": [
-              "{target}です",
-              "{target}"
-            ]
+            "name": "TV",
+            "type": "ListTV"
           },
           {
-            "name": "powerState",
-            "type": "ListPowerState",
-            "samples": [
-              "{powerState}です",
-              "{powerState}"
-            ]
+            "name": "Channel",
+            "type": "ListChannel"
+          },
+          {
+            "name": "Next",
+            "type": "ListNext"
+          }
+        ]
+      },
+      {
+        "name": "ChangeTVChannelPrevIntent",
+        "samples": [
+          " {TV} の {Channel} を {Prev} にして",
+          " {TV} の {Channel} を {Prev} に",
+          " {Channel} を {Prev} にして",
+          " {Channel} を {Prev} に",
+          " {Prev} の {Channel}"
+        ],
+        "slots": [
+          {
+            "name": "TV",
+            "type": "ListTV"
+          },
+          {
+            "name": "Channel",
+            "type": "ListChannel"
+          },
+          {
+            "name": "Prev",
+            "type": "ListPrev"
+          }
+        ]
+      },
+      {
+        "name": "TurnACPowerOffIntent",
+        "samples": [
+          " {AC} の {Power} を {Off} ください",
+          " {AC} の {Power} を {Off}",
+          " {AC} を {Off}",
+          " {AC} を {Off} ください"
+        ],
+        "slots": [
+          {
+            "name": "AC",
+            "type": "ListAC"
+          },
+          {
+            "name": "Power",
+            "type": "ListPower"
+          },
+          {
+            "name": "Off",
+            "type": "ListOff"
+          }
+        ]
+      },
+      {
+        "name": "TurnACPowerOnIntent",
+        "samples": [
+          " {AC} の {Power} を {On} ください",
+          " {AC} の {Power} を {On}",
+          " {AC} を {On}",
+          " {AC} を {On} ください"
+        ],
+        "slots": [
+          {
+            "name": "AC",
+            "type": "ListAC"
+          },
+          {
+            "name": "Power",
+            "type": "ListPower"
+          },
+          {
+            "name": "On",
+            "type": "ListOn"
+          }
+        ]
+      },
+      {
+        "name": "TurnACTempDownIntent",
+        "samples": [
+          " {AC} の {Temp} を {Down} ください",
+          " {AC} の {Temp} を {Down}",
+          " {Temp} を {Down} ください",
+          " {Temp} を {Down}"
+        ],
+        "slots": [
+          {
+            "name": "AC",
+            "type": "ListAC"
+          },
+          {
+            "name": "Temp",
+            "type": "ListTemp"
+          },
+          {
+            "name": "Down",
+            "type": "ListTempDown"
+          }
+        ]
+      },
+      {
+        "name": "TurnACTempUpIntent",
+        "samples": [
+          " {AC} の {Temp} を {Up} ください",
+          " {AC} の {Temp} を {Up}",
+          " {Temp} を {Up} ください",
+          " {Temp} を {Up}"
+        ],
+        "slots": [
+          {
+            "name": "AC",
+            "type": "ListAC"
+          },
+          {
+            "name": "Temp",
+            "type": "ListTemp"
+          },
+          {
+            "name": "Up",
+            "type": "ListTempUp"
+          }
+        ]
+      },
+      {
+        "name": "TurnTVPowerOffIntent",
+        "samples": [
+          " {TV} の {Power} を {Off} ください",
+          " {TV} の {Power} を {Off}",
+          " {TV} を {Off}",
+          " {TV} を {Off} ください"
+        ],
+        "slots": [
+          {
+            "name": "TV",
+            "type": "ListTV"
+          },
+          {
+            "name": "Power",
+            "type": "ListPower"
+          },
+          {
+            "name": "Off",
+            "type": "ListOff"
+          }
+        ]
+      },
+      {
+        "name": "TurnTVPowerOnIntent",
+        "samples": [
+          " {TV} の {Power} を {On} ください",
+          " {TV} の {Power} を {On}",
+          " {TV} を {On}",
+          " {TV} を {On} ください"
+        ],
+        "slots": [
+          {
+            "name": "TV",
+            "type": "ListTV"
+          },
+          {
+            "name": "Power",
+            "type": "ListPower"
+          },
+          {
+            "name": "On",
+            "type": "ListOn"
           }
         ]
       }
     ],
     "invocationName": "家電"
-  },
-  "prompts": [
-    {
-      "id": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-target",
-      "variations": [
-        {
-          "type": "PlainText",
-          "value": "テレビですか？　エアコンですか？"
-        }
-      ]
-    },
-    {
-      "id": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-powerState",
-      "variations": [
-        {
-          "type": "PlainText",
-          "value": "オンですか？　オフですか？"
-        }
-      ]
-    }
-  ],
-  "dialog": {
-    "intents": [
-      {
-        "name": "ChangeDevicePowerIntent",
-        "confirmationRequired": false,
-        "prompts": {},
-        "slots": [
-          {
-            "name": "target",
-            "type": "ListTarget",
-            "elicitationRequired": true,
-            "confirmationRequired": false,
-            "prompts": {
-              "elicitation": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-target"
-            }
-          },
-          {
-            "name": "powerState",
-            "type": "ListPowerState",
-            "elicitationRequired": true,
-            "confirmationRequired": false,
-            "prompts": {
-              "elicitation": "Elicit.Intent-ChangeDevicePowerIntent.IntentSlot-powerState"
-            }
-          }
-        ]
-      }
-    ]
   }
 }
